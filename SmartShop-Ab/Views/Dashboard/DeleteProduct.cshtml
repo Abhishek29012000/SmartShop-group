@@ -1,0 +1,57 @@
+﻿@model SmartShop_Ab.Models.AddProduct
+
+@{
+    ViewData["Title"] = "DeleteProduct";
+}
+
+<br />
+
+<h2 class="text-info">Product Type Details</h2>
+        <form asp-action="DeleteProduct" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="ProductName" class="control-label" style = "color: black"></label>
+                 </div>
+                <div class="col-6">
+                <input asp-for="ProductName"  readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="BrandType" class="control-label" style = "color: black"></label>
+                 </div>
+                <div class="col-6">
+                <input asp-for="BrandType"  readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="BrandType" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="Quantity" class="control-label" style = "color: black"></label>
+                 </div>
+                <div class="col-6">
+                <input asp-for="Quantity"  readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+             <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="StockCount" class="control-label" style = "color: black"></label>
+                 </div>
+                <div class="col-6">
+                <input asp-for="StockCount"  readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="StockCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h3>Do you want to delete this product ?</h3>
+            <input type="submit" class="btn btn-danger" value="Delete"/>
+            <a asp-action="Add" class="btn btn-success">Back to List</a>
+        </div>
+        </form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

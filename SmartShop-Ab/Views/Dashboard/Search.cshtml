@@ -1,0 +1,45 @@
+﻿
+<body style="background-image: url('https://media.istockphoto.com/vectors/online-shopping-hand-holding-smartphone-and-shopping-bag-ecommerce-vector-id1179101265?k=20&m=1179101265&s=612x612&w=0&h=3hr8uRIJ0lNUpRk9Z4282QdhhH5Z5UOETG3Pj9wLKAg='); margin: 0px;
+background-repeat: no-repeat;  background-attachment: fixed; background-size: 100% 100%;">
+
+<div class="container">
+    <br/>
+@{
+    try
+    {
+        if(TempData["emp"]!=null)
+        {
+            <div class="row">
+    @{
+        foreach(var x in (List<SmartShop_Ab.Models.StockManagement>)TempData["emp"])
+        {
+           
+            <div class="col-md-3  border border-dark border-4 rounded-3 text-black ">
+         
+                                         <div >
+                                               <br/>
+                                               @x.ProductName-
+                                                @x.Quantity<br/>
+                                               @x.StockCount<br/>
+                                               @x.MDate<br/>
+                                               @x.EDate<br/>
+                                               <img src="~/@x.ProductImage" alt="Card Image" class="card-img-top" style="height: 300px;"/><br/>
+                                               
+                                        </div>
+            </div>
+            
+            <div class="col-md-1"></div>
+              }
+    }
+</div>
+        }
+    }
+    catch
+    {
+       
+    }
+}
+
+   
+</div>
+</body>

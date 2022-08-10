@@ -1,0 +1,91 @@
+﻿
+<body style="background-image: url('https://media.istockphoto.com/vectors/business-management-vector-id1198767576?k=20&m=1198767576&s=612x612&w=0&h=3PUE_um0lEZty7yvXuqo3ELx5uRCW2QVfAkvgzwHcpI='); margin: 0px;
+background-repeat: no-repeat; background-size: cover;">
+
+
+@using SmartShop_Ab.Models;
+@model IEnumerable<AddProduct>
+@{
+    ViewData["Title"] = "Add";
+}
+
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Add Product List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="AddProduct" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; New Product </a>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(c => c.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.BrandType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.StockCount)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
+         @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.ProductName</td>
+                <td>@item.BrandType</td>
+                <td>@item.Quantity</td>
+                <td>@item.StockCount</td>
+                <td>
+                    <partial name="ButtonPartial" model="@item.Id" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="row">
+     <div class="col-6 text-right">
+        <h3>Total Amount</h3>
+        <h3>Grant Total : @Model.Sum(c=>c.Quantity) </h3>
+        <a asp-area="" asp-action="Checkout" asp-controller="Order" class="btn btn-info">Process to Checkout</a>
+    </div>
+    </div>
+
+
+ </body>
+ 
+@section scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var save = '@TempData["msg"]'
+            if(save!='') {
+                alertify.success(save);
+            }
+            var edit = '@TempData["msg"]'
+            if(edit!='') {
+                alertify.success(edit);
+            }
+            var del = '@TempData["msg"]'
+            if (del!='') {
+                alertify.error(del);
+            }
+        })
+    </script>
+}
+ 
+
+

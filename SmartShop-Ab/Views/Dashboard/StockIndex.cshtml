@@ -1,0 +1,74 @@
+﻿<body style="background-image: url('https://media.istockphoto.com/vectors/shopping-online-with-realistic-modern-smartphone-virtual-realistic-vector-id1247567791?k=20&m=1247567791&s=612x612&w=0&h=hBZ_-VlUow8bGQ6-_wXO0p5w0_Zxkjv5VfgDw3IlQYo='); margin: 0px;
+background-repeat: no-repeat; background-size: cover;">
+@using SmartShop_Ab.Models;
+@model IEnumerable<StockManagement>
+@{
+    ViewData["Title"] = "StockIndex";
+}
+
+<br /><br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Stock Management</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; Add New Stock</a>
+    </div>
+</div>
+
+        <form method="get" asp-action="Search">
+         <div>
+            <br/>
+            <input type="search" placeholder="Enter the Product Name" value="@ViewData["search"]" name="Empsearch" style="width:600px;" >
+            <input type="submit" value="Search" class="btn btn-dark" />
+        </div>
+        </form>
+<br />
+
+<div>
+    <table class="table table-striped border"  style=" background-color:#ffffcc" id="myTable">
+        <thead>
+        <tr class="table-info" >
+            <th>
+                @Html.DisplayNameFor(c => c.ProductName)
+            </th>
+             <th>
+                @Html.DisplayNameFor(c => c.Quantity)
+            </th>
+             <th>
+                @Html.DisplayNameFor(c => c.StockCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.MDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.EDate)
+            </th>
+            <th></th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach(var iteam in Model)
+        {
+            <tr>
+                <td>@iteam.ProductName</td>
+                <td>@iteam.Quantity</td>
+                <td>@iteam.StockCount</td>
+                 <td>@iteam.MDate</td>
+                 <td>@iteam.EDate</td>
+                 <td>
+                      <partial name="StockButtonPartial" model="@iteam.Id"/>
+                 </td>
+
+            </tr>
+        }
+         </tbody>
+         </table>
+</div>
+</body>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
